@@ -4,6 +4,7 @@
     var UserController = require('../controllers/UserController');
     var FormController = require('../controllers/FormController');
     var FieldController = require('../controllers/FieldController');
+    var PageController = require('../controllers/PageController');
 
     module.exports = function() {
 
@@ -25,17 +26,25 @@
                 // forms
                 app.get('/api/form', FormController.index);
                 app.post('/api/form', FormController.create);
-                app.get('/api/form/:id', FormController.show);
-                app.put('/api/form/:id', FormController.update);
-                app.delete('/api/form/:id', FormController.destroy);
+                app.get('/api/form/:slug', FormController.show);
+                app.put('/api/form/:slug', FormController.update);
+                app.delete('/api/form/:slug', FormController.destroy);
 
 
-                // forms
+                // fields
                 app.get('/api/field', FieldController.index);
                 app.post('/api/field', FieldController.create);
                 app.get('/api/field/:id', FieldController.show);
                 app.put('/api/field/:id', FieldController.update);
                 app.delete('/api/field/:id', FieldController.destroy);
+
+
+                // page
+                app.get('/api/page', PageController.index);
+                app.post('/api/page', PageController.create);
+                app.get('/api/page/:id', PageController.show);
+                app.put('/api/page/:id', PageController.update);
+                app.delete('/api/page/:id', PageController.destroy);
 
             }
         };
