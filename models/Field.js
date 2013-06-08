@@ -7,11 +7,10 @@ var schemaOptions = {toJSON: {virtuals: true}};
 var FieldSchema = new Schema({
     x: String,
     y: String,
-    name: String,
     cell_type: String,
     max_width: String,
-    letter_spacing: String,
-    text: String
+    letter_spacing: {type: String, default: '0'},
+    value: String
 }, schemaOptions);
 
 module.exports.Field = mongoose.model('Field', FieldSchema);

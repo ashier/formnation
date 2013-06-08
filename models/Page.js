@@ -7,7 +7,7 @@ var schemaOptions = {toJSON: {virtuals: true}};
 
 var PageSchema = new Schema({
     page_image: String,
-    index: String,
+    page_index: String,
     slug: String,
     fields: [{type: ObjectId, ref: 'Field'}]
 }, schemaOptions);

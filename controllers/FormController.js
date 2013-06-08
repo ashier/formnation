@@ -4,7 +4,7 @@ var Page = require('../models/Page').Page;
 
 exports.index = function(req, res) {
     Form.find()
-        .populate('pages', 'page_image slug')
+        .populate('pages')
         .exec(function(err, forms) {
             if (err) throw new Error(err);
             res.json(forms);
