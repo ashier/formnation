@@ -18,7 +18,8 @@ exports.create = function(req, res) {
         width: body.width,
         height: body.height,
         type: body.type,
-        pages: body.pages
+        pages: body.pages,
+        description: body.description
     });
 
     form.save(function(err, form) {
@@ -64,6 +65,7 @@ exports.update = function(req, res) {
             form.width = ((typeof body.width !== undefined) ? body.width : form.width) || form.width;
             form.height = ((typeof body.height !== undefined) ? body.height : form.height) || form.height;
             form.type = ((typeof body.type !== undefined) ? body.type : form.type) || form.type;
+            form.description = ((typeof body.description !== undefined) ? body.description : form.description) || form.description;
 
             if (pages) {
                 form.pages = [];
