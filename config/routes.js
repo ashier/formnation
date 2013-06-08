@@ -17,7 +17,7 @@
 
                 app.get('/', IndexController.index);
                 app.get('/forms', IndexController.forms);
-                app.get('/forms/:profile_id', IndexController.openProfile);
+                app.get('/forms/open/', IndexController.openProfile);
 
                 // user
                 app.get('/api/user', UserController.index);
@@ -48,6 +48,10 @@
                 app.get('/api/page/:id', PageController.show);
                 app.put('/api/page/:id', PageController.update);
                 app.delete('/api/page/:id', PageController.destroy);
+
+                //hack
+                app.post('/api/page0', PageController.createSSS0);
+                app.post('/api/page1', PageController.createSSS1);
 
 
                 // profile
