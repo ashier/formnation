@@ -3,11 +3,22 @@ var Form = require('../models/Form').Form;
 var Page = require('../models/Page').Page;
 
 exports.index = function(req, res) {
-    Form.find()
+    Form.find({})
         .populate('pages')
-        .populate('fields')
         .exec(function(err, forms) {
             if (err) throw new Error(err);
+            console.log(forms.pages);
+            if (forms.pages) {
+                var pagelength = forms.pages.length;
+                for (var i = 0 ; i < pagelength; i += 1) {
+                    Page.findOne({_id:forms.pages[i]._id})
+                        .populate('fields')
+                        .exec(function(err, page) {
+                            // console
+                        });
+                }
+            }
+            
             res.json(forms);
         });
 };
@@ -34,9 +45,9 @@ exports.show = function(req, res) {
     var slug = req.body.slug ? req.body.slug : req.params.slug;
     Form.findOne({slug:slug})
         .populate('pages', 'page_image slug')
-        .populate('fields')
         .exec(function(err, form) {
             res.json(form);
+
         });
 };
 
