@@ -1,5 +1,33 @@
 <div>
-    <a href="#form/<%= _id %>" class="btn btn-large btn-success span8 offset2" style="text-align: center;">
+    <!--a href="#form/<%= _id %>" class="btn btn-large btn-success span8 offset2" style="text-align: center;">
         <h2><%= type %></h2>
-    </a>
-</div>    
+    </a-->
+
+    <table class="table table-bordered table-striped">
+    <colgroup>
+      <col class="span1">
+      <col class="span7">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Form Name</th>
+        <th>Form Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% _.each(forms, function(form){ %>
+        <tr>
+            <td>
+                <%= form.type %>
+            </td>
+            <td>
+                <%= form.description %>
+                <% _.each(form.profiles, function(profile){ %>
+                    <button class="btn profile" data-id="<%= profile.id %>" type="btn">Use <%= profile.name %> profile.</button>
+                <% }); %>
+            </td>
+        </tr>
+    <% }); %>
+    </tbody>
+  </table>
+</div>
