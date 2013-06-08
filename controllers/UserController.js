@@ -1,10 +1,12 @@
 
 var User = require('../models/User').User;
 var Form = require('../models/Form').Form;
+var Profile = require('../models/Profile').Profile;
 
 exports.index = function(req, res) {
     User.find()
         .populate('forms')
+        .populate('profile')
         .populate('pages')
         .exec(function(err, users) {
             if (err) throw new Error(err);
