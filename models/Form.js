@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
 var schemaOptions = {toJSON: {virtuals: true}};
 
 var FormSchema = new Schema({
-    size: String,
+    width: String,
+    height: String,
     type: String,
     pages: [{type: ObjectId, ref: 'Page'}]
 }, schemaOptions);
