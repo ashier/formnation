@@ -17,6 +17,7 @@
 
                 app.get('/', IndexController.index);
                 app.get('/forms', IndexController.forms);
+                app.get('/forms/:profile_id', IndexController.openProfile);
 
                 // user
                 app.get('/api/user', UserController.index);
