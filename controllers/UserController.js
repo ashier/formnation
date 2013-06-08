@@ -51,7 +51,7 @@ exports.update = function(req, res) {
     var forms = body.forms ? body.forms.split(",") : null;
     var profiles = body.profiles ? body.profiles.split(",") : null;
 
-    User.findOne({id:body.id})
+    User.findOne({id:req.params.id})
         .exec(function(err, user) {
 
             user.first_name = ((typeof body.first_name !== undefined) ? body.first_name : user.first_name) || user.first_name;
