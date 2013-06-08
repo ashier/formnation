@@ -6,6 +6,7 @@
     var FieldController = require('../controllers/FieldController');
     var PageController = require('../controllers/PageController');
     var ProfileController = require('../controllers/ProfileController');
+    var HackController = require('../controllers/HackController');
 
     module.exports = function() {
 
@@ -31,7 +32,7 @@
                 app.post('/api/form', FormController.create);
                 app.get('/api/form/:slug', FormController.show);
                 app.put('/api/form/:slug', FormController.update);
-                app.delete('/api/form/:slug', FormController.destroy);
+                app.delete('/api/form/:id', FormController.destroy);
 
 
                 // fields
@@ -50,8 +51,8 @@
                 app.delete('/api/page/:id', PageController.destroy);
 
                 //hack
-                app.post('/api/page0', PageController.createSSS0);
-                app.post('/api/page1', PageController.createSSS1);
+                app.post('/api/page0', HackController.createSSS0);
+                app.post('/api/page1', HackController.createSSS1);
 
 
                 // profile

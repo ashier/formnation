@@ -8,35 +8,26 @@ var OpenForm = OpenForm || {};
     $.extend(true, OpenForm, {
 
         init: function() {
+            var that = this;
 
             var FormModel = Backbone.Model.extend({
-
                 urlRoot: "/api/form/",
+                idAttribute: "_id"
+            });
 
-                idAttribute: "_id",
+            var FormModelCollection = Backbone.Collection.extend({
+                url:'/api/form/',
+                model: FormModel
+            });
 
-                defaults: {
-                    __v: 0,
-                    _id: "51b3074bf9cd6206fb000001",
-                    height: "792",
-                    slug: "sss-e1-61184785724",
-                    type: "SSS-E1",
-                    description:'SSS Government form',
-                    width: "612",
-                    pages: [
-                        {
-                            slug: "publicformssss_e1_0png",
-                            page_image: "/public/forms/sss_e1_0.png",
-                            page_index: "0",
-                            _id: "51b31592aced300000000002",
-                            __v: 0,
-                            fields: [],
-                            id: "51b31592aced300000000002"
-                        }
-                    ],
-                    profiles:[],
-                    id: "51b3074bf9cd6206fb000001"
-                }
+            var ProfileModel = Backbone.Model.extend({
+                urlRoot: "/api/profile/:id",
+                idAttribute: "_id"
+            });
+
+            var ProfileModelCollection = Backbone.Collection.extend({
+                url:'/api/profile/',
+                model: ProfileModel
             });
 
             var Router = Backbone.Router.extend({
@@ -46,14 +37,29 @@ var OpenForm = OpenForm || {};
                 },
 
                 initialize: function (id, pid) {
-                    console.log('init > ', id, pid);
-                }
+                    var self = this;
+                    var fields = [];
+                    var value_fields = [];
 
+                    var formColl = new FormModelCollection();
+                    var profileColl = new ProfileModelCollection();
+
+                    formColl.fetch({success:function(model) {
+                        self.fields = model.toJSON()[0].pages;
+                        profileColl.fetch({success:function(model) {
+                            that.generatePdf(self.fields, model.toJSON()[0].fields);
+                        }});
+
+                    }});
+                }
             });
 
             var app = new Router();
             Backbone.history.start();
+        },
 
+        generatePdf: function(fields, value_fields) {
+            console.log('generate dude', fields, value_fields);
             // var imgData = '';
             // var imgData2 = '';
             // var doc = new jsPDF('p', 'pt', 'letter');

@@ -53,8 +53,6 @@ exports.update = function(req, res) {
     var slug = req.body.slug ? req.body.slug : req.params.slug;
     var pages = body.pages ? body.pages.split(",") : null;
 
-    console.log('body.slug >', body);
-
     Form.findOne({slug:slug})
         .select('pages width height type slug')
         .populate('pages', 'page_image slug')
@@ -82,5 +80,11 @@ exports.update = function(req, res) {
 };
 
 exports.destroy = function(req, res){
-    // res.send('destroy ' + req.params.slug);
+    Form.findOneAndRemove({_id:req.params.id}, function(err, form) {
+        if (err) {
+            res.json({status:"error", message:"Form cannot be found."});
+        } else {
+            res.json({status:"ok", message:"Form has been deleted."});
+        }
+    });
 };
