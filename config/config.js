@@ -1,6 +1,7 @@
 (function() {
 
     var path = require('path'),
+        mongoose = require('mongoose'),
         engines = require('consolidate');
 
     module.exports = function() {
@@ -30,6 +31,7 @@
                   app.use(express.errorHandler());
                 }
 
+                mongoose.connect('mongodb://localhost/formnation');
             }
         };
 
