@@ -20,11 +20,15 @@ var AppRouter = Backbone.Router.extend({
     },
 
     selectForm: function () {
-        if (!this.formView) {
-            this.formView = new FormView();
-        }
-        $('#content').html(this.formView.el);
-        this.headerView.selectMenuItem('login-menu');
+
+        var forms = new FormCollection({assessmentID: 1});
+        forms.fetch({success: function(){
+            if (!this.formView) {
+                this.formView = new FormView({model: forms});
+            }
+            $('#content').html(this.formView.el);
+            this.headerView.selectMenuItem('login-menu'); 
+        }});       
     }
 });
 
