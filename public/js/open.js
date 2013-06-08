@@ -10,12 +10,15 @@ var OpenForm = OpenForm || {};
         init: function() {
 
             var Router = Backbone.Router.extend({
+
                 routes: {
-                    "/forms/open/"        : "initialize"
+                    "pdf/:id/:pid"        : "initialize"
                 },
-                initialize: function (id) {
-                    console.log('init > ', id);
+
+                initialize: function (id, pid) {
+                    console.log('init > ', id, pid);
                 }
+
             });
 
             var app = new Router();
