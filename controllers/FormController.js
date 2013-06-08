@@ -5,6 +5,7 @@ var Page = require('../models/Page').Page;
 exports.index = function(req, res) {
     Form.find()
         .populate('pages')
+        .populate('fields')
         .exec(function(err, forms) {
             if (err) throw new Error(err);
             res.json(forms);
@@ -33,6 +34,7 @@ exports.show = function(req, res) {
     var slug = req.body.slug ? req.body.slug : req.params.slug;
     Form.findOne({slug:slug})
         .populate('pages', 'page_image slug')
+        .populate('fields')
         .exec(function(err, form) {
             res.json(form);
         });
