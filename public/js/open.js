@@ -45,9 +45,9 @@ var OpenForm = OpenForm || {};
                     var profileColl = new ProfileModelCollection();
 
                     formColl.fetch({success:function(model) {
-                        self.fields = model.toJSON()[0].pages;
+                        self.fields = model.toJSON();
                         profileColl.fetch({success:function(model) {
-                            that.generatePdf(self.fields, model.toJSON()[0].fields);
+                            that.generatePdf(self.fields[0], model.toJSON());
                         }});
 
                     }});
@@ -58,8 +58,41 @@ var OpenForm = OpenForm || {};
             Backbone.history.start();
         },
 
-        generatePdf: function(fields, value_fields) {
-            console.log('generate dude', fields, value_fields);
+        generatePdf: function(form,fields) {
+            var doc = new jsPDF('p', 'pt', 'letter');
+            doc.setFontSize(9);
+
+            var pageCnt = 0;
+            //loop through pages
+
+            while(pageCnt < form.pages.length){
+                if(pageCnt > 0) doc.addPage();
+
+                var forms = form.pages[pageCnt].fields;
+
+                doc.addImage(form.pages[pageCnt].page_image, 'JPEG', 0, 0, form.width, form.height);
+
+                console.log(forms);
+
+                //loop through entries
+                for(var i=0; i++; i < fields.length ){
+                    var fieldValues = forms;
+                    for(var j=0; j++; j < fieldValues.length){
+                        console.log(fields[i].name + "--" +fieldValues[j].value);
+
+                        if(fields[i].name === fieldValues[j].value){
+                            // doc.text(15, 60, "Octonyan loves jsPDF");
+                            doc.text(fieldValues[j].x, fieldValues[j].y, fields[i].value);
+                        }
+                    }
+                }
+
+                pageCnt ++;
+            }
+
+            var string = doc.output('datauristring');
+            $('iframe').attr('src', string);
+
             // var imgData = '';
             // var imgData2 = '';
             // var doc = new jsPDF('p', 'pt', 'letter');
