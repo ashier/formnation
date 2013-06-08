@@ -12,6 +12,13 @@ exports.index = function(req, res) {
 exports.create = function(req, res) {
     var body = req.body;
     var field = new Field({
+        x: String,
+        y: String,
+        name: String,
+        cell_type: String,
+        max_width: String,
+        letter_spacing: String,
+        text: String
     });
 
     field.save(function(err, field) {
