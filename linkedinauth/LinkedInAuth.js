@@ -55,6 +55,34 @@
                     passport.authenticate('linkedin', { failureRedirect: '/login' }),
                     function(req, res) {
                         res.redirect('/#form');
+//                        var authorizationCode = req.params.code;
+//                        console.log('In callback already with auth code ', authorizationCode);
+//                        console.log('In callback already with PARAMS ', req.params);
+//                        console.log('In callback already with body ', req.body);
+//
+//                        var options = {
+//                            host : 'https://www.linkedin.com',
+//                            path : '/uas/oauth2/accessToken?grant_type=authorization_code&code=' + authorizationCode + '&redirecturi=/api/linkedin&client_id=' + api_key + '&client_secret=' + secret,
+//                            port : 80,
+//                            method : 'POST'
+//                        };
+//
+//                        var request = http.request(options, function(response){
+//                            var body = "";
+//
+//                            response.on('data', function(data) {
+//                                body += data;
+//                            });
+//
+//                            response.on('end', function() {
+//                                res.send(JSON.parse(body));
+//                            });
+//                        });
+//
+//                        request.on('error', function(e) {
+//                            console.log('Problem with request: ' + e.message);
+//                            console.log( e.stack );
+//                        });
                     });
 
                 app.get('/api/linkedin', function(req, res) {
