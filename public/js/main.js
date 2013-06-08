@@ -4,6 +4,7 @@ var AppRouter = Backbone.Router.extend({
         ""        : "home",
         "home"    : "home",
         "form"    : "selectForm",
+        "about"    : "aboutUs",
         "open/:id/:pid" : "openForm"
     },
 
@@ -37,16 +38,23 @@ var AppRouter = Backbone.Router.extend({
             $('#content').html(this.formView.el);
         }});
 
-        this.headerView.selectMenuItem('login-menu');        
+        this.headerView.hideMenuItem('login-menu');        
     },
 
     openForm: function (id,pid) {
         console.log(id +' : ' + pid);      
+    },
+
+    aboutUs: function (id,pid) {
+        if (!this.homeView) {
+            this.aboutView = new AboutView();
+        }
+        $('#content').html(this.aboutView.el);     
     }
 
 });
 
-utils.loadTemplate(['HomeView', 'HeaderView', 'FormView'], function() {
+utils.loadTemplate(['HomeView', 'HeaderView', 'FormView', 'AboutView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });
