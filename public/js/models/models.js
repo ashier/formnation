@@ -66,6 +66,7 @@ window.FormModel = Backbone.Model.extend({
                 id: "51b31592aced300000000002"
             }
         ],
+        profiles:[],
         id: "51b3074bf9cd6206fb000001"
     }    
 });
