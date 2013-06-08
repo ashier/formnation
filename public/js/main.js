@@ -3,7 +3,8 @@ var AppRouter = Backbone.Router.extend({
     routes: {
         ""        : "home",
         "home"    : "home",
-        "form"    : "selectForm"
+        "form"    : "selectForm",
+        "open/:id/:pid" : "openForm"
     },
 
     initialize: function () {
@@ -37,7 +38,12 @@ var AppRouter = Backbone.Router.extend({
         }});
 
         this.headerView.selectMenuItem('login-menu');        
+    },
+
+    openForm: function (id,pid) {
+        console.log(id +' : ' + pid);      
     }
+
 });
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FormView'], function() {

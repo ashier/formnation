@@ -10,6 +10,16 @@ html,body,.container{
     height: 100%
 }
 
+.heroTitle{
+    font-family: poiret-one, sans-serif;
+    margin-bottom: 0;
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+    text-shadow: 1px 1px #000000;
+    color: #FFFFFF;
+}
+
 .masthead {
     padding: 70px 0 80px;
     margin-bottom: 0;
