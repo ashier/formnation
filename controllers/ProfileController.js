@@ -67,7 +67,7 @@ exports.update = function(req, res) {
 exports.createField = function(req, res) {
     var body = req.body;
 
-    Profile.findOne({id:body.id})
+    Profile.findOne({_id:req.params.id})
         .populate('fields')
         .exec(function(err, profile) {
             if (err) throw new Error(err);

@@ -1,3 +1,5 @@
+var Page = require('../models/Page').Page;
+
 exports.createSSS0 = function(req, res) {
     var body = req.body;
 
