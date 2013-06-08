@@ -10,7 +10,7 @@ window.utils = {
 
         $.each(views, function(index, view) {
             if (window[view]) {
-                deferreds.push($.get('tpl/' + view + '.html', function(data) {
+                deferreds.push($.get('public/tpl/' + view + '.html', function(data) {
                     window[view].prototype.template = _.template(data);
                 }));
             } else {
