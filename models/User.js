@@ -22,7 +22,7 @@ UserSchema.virtual('full_name').get(function() {
 
 UserSchema.pre('save', function(next) {
     if(!this.first_name) next();
-    this.slug = Slugify.slugify(this.first_name + this.last_name);
+    this.slug = Slugify.slugify(this.first_name + ' ' + this.last_name);
     next();
 });
 
