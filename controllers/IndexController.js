@@ -8,3 +8,6 @@ exports.forms = function(req, res) {
     res.render(path.join(__dirname, '..', '/views/forms'));
 };
 
+exports.openProfile = function(req, res) {
+    res.render(path.join(__dirname, '..', '/views/open'));
+};

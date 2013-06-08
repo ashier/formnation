@@ -12,9 +12,6 @@
     <link href="/public/css/bootstrap.css" rel="stylesheet">
     <link href="/public/css/styles.css" rel="stylesheet">
 
-    <script src="http://use.edgefonts.net/andika.js"></script>
-    <script src="http://use.edgefonts.net/arvo.js"></script>
-
     <!-- shim for non-html5-->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -22,17 +19,35 @@
     <body>
 
 
-    <!-- templates here -->
-    <div class="header"></div>
-    <div class="container">
+    <div class="header">
+        <div><div class="navbar navbar-inverse navbar-fixed-top" style="z-index: 10;">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">
+                        <img src="/public/images/logo.png">
+                    </a>
 
-        <div class="row-fluid">
-            <div id="content"></div>
+                    <div class="nav-collapse collapse">
+
+                        <ul class="nav">
+                            <li class="home-menu active"><a href="#home">Home</a></li>
+                            <li class="login-menu"><a href="#login">Login</a></li>
+                            <li class="assessment-menu"><a href="#about">About</a></li>
+                        </ul>
+
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
         </div>
-
-        <!-- <footer class="footer">
-            <p>© Copyright 2013. Formnation</p>
-        </footer> -->
+        </div>
+    </div>
+    <div class="container">
 
     </div>
 
@@ -43,15 +58,8 @@
     <script src="/public/lib/underscore-min.js"></script>
     <script src="/public/lib/backbone-min.js"></script>
     <script src="/public/lib/bootstrap.min.js"></script>
-
-    <script src="/public/js/utils.js"></script>
     <script src="/public/lib/jspdf.js"></script>
-
-    <script src="/public/js/views/header.js"></script>
-    <script src="/public/js/views/home.js"></script>
-    <script src="/public/js/views/formView.js"></script>
-    <script src="/public/js/models/models.js"></script>
-    <script src="/public/js/main.js"></script>
+    <script src="/public/js/open.js"></script>
 
     </body>
 </html>
