@@ -5,22 +5,24 @@ window.FormViewList = Backbone.View.extend({
     },
 
     render: function () {
-        var form = this.model.models;
-        var len = form.length;
+        var formModel = this.model.models;
+        var len = formModel.length;
 
-        $(this.el).html('<div class="row-fluid formList"><h1 class="span12">Select the form:</h1>');
-
+        $(this.el).html(' <div> <table class="table table-bordered table-striped"><colgroup><col class="span1"><col class="span7"></colgroup><thead><tr><th>Form Name</th> <th>Form Description</th></tr></thead><tbody class="formList"></tbody></table></div>');
 
         for (var i = 0; i < len; i++) {
-            $('.formList', this.el).append(new FormView({model:form[i]}).render().el);
+            $('.formList', this.el).append(new FormView({model:formModel[i]}).render().el);
         }
 
         return this;
-    }
+    },
+
+
+
 });
 
 window.FormView = Backbone.View.extend({
-	tagName: "h4",
+	tagName: "tr",
 
 	initialize:function () {
         this.render();

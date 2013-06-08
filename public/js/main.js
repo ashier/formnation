@@ -7,8 +7,14 @@ var AppRouter = Backbone.Router.extend({
     },
 
     initialize: function () {
+        var user = new UserModel();
         this.headerView = new HeaderView();
         $('.header').html(this.headerView.el);
+
+        user.fetch({success: function(){
+            if (!this.formView) {
+            }
+        }});        
     },
 
     home: function () {
@@ -21,10 +27,11 @@ var AppRouter = Backbone.Router.extend({
 
     selectForm: function () {
 
-        var forms = new FormCollection({assessmentID: 1});
+        var forms = new FormCollection();
         forms.fetch({success: function(){
             if (!this.formView) {
                 this.formView = new FormViewList({model: forms});
+                
             }
             $('#content').html(this.formView.el);
         }});

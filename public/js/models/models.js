@@ -1,6 +1,6 @@
 window.UserModel = Backbone.Model.extend({
 
-    urlRoot: "/api/users/",
+    urlRoot: "/api/user/",
     idAttribute: "_id",
 
     defaults: 
@@ -13,7 +13,17 @@ window.UserModel = Backbone.Model.extend({
         middle_name: "relucio",
         password: "admin",
         slug: "ashier-de-leon",
-        profiles: "",
+        profiles: [
+            {
+                __v: 1,
+                _id: "51b33187aded4d0000000001",
+                name: "complete",
+                fields: [
+                "51b33bbff7098c0000000001"
+                ],
+                id: "51b33187aded4d0000000001"
+            }
+        ],
         forms: [
             {
                 __v: 0,
@@ -43,27 +53,21 @@ window.FormModel = Backbone.Model.extend({
         height: "792",
         slug: "sss-e1-61184785724",
         type: "SSS-E1",
+        description:'SSS Government form',
         width: "612",
         pages: [
             {
-                _id: "51b2fa0af2a1bbd7ec000001",
-                index: "0",
-                page_image: "/public/forms/sss_e1_0.png",
                 slug: "publicformssss_e1_0png",
-                id: "51b2fa0af2a1bbd7ec000001"
-            },
-            {
-                _id: "51b2fa1ef2a1bbd7ec000002",
-                index: "1",
-                page_image: "/public/forms/sss_e1_1.png",
-                slug: "publicformssss_e1_1png",
-                id: "51b2fa1ef2a1bbd7ec000002"
+                page_image: "/public/forms/sss_e1_0.png",
+                page_index: "0",
+                _id: "51b31592aced300000000002",
+                __v: 0,
+                fields: [],
+                id: "51b31592aced300000000002"
             }
         ],
         id: "51b3074bf9cd6206fb000001"
-    }
-
-    
+    }    
 });
 
 window.FormCollection = Backbone.Collection.extend({
@@ -79,12 +83,13 @@ window.PageModel = Backbone.Model.extend({
 
     defaults: 
         {
-            __v: 0,
-            _id: "51b2fa0af2a1bbd7ec000001",
-            page_image: "/public/forms/sss_e1_0.png",
             slug: "publicformssss_e1_0png",
-            fields: [ ],
-            id: "51b2fa0af2a1bbd7ec000001"
+            page_image: "/public/forms/sss_e1_0.png",
+            page_index: "0",
+            _id: "51b31592aced300000000002",
+            __v: 0,
+            fields: [],
+            id: "51b31592aced300000000002"
         }
 });
 
