@@ -9,6 +9,36 @@ var OpenForm = OpenForm || {};
 
         init: function() {
 
+            var FormModel = Backbone.Model.extend({
+
+                urlRoot: "/api/form/",
+
+                idAttribute: "_id",
+
+                defaults: {
+                    __v: 0,
+                    _id: "51b3074bf9cd6206fb000001",
+                    height: "792",
+                    slug: "sss-e1-61184785724",
+                    type: "SSS-E1",
+                    description:'SSS Government form',
+                    width: "612",
+                    pages: [
+                        {
+                            slug: "publicformssss_e1_0png",
+                            page_image: "/public/forms/sss_e1_0.png",
+                            page_index: "0",
+                            _id: "51b31592aced300000000002",
+                            __v: 0,
+                            fields: [],
+                            id: "51b31592aced300000000002"
+                        }
+                    ],
+                    profiles:[],
+                    id: "51b3074bf9cd6206fb000001"
+                }
+            });
+
             var Router = Backbone.Router.extend({
 
                 routes: {
