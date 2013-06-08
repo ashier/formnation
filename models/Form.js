@@ -10,6 +10,7 @@ var FormSchema = new Schema({
     height: String,
     type: String,
     slug:String,
+    description:String,
     pages: [{type: ObjectId, ref: 'Page'}]
 }, schemaOptions);
 
