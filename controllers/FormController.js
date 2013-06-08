@@ -5,7 +5,6 @@ var Page = require('../models/Page').Page;
 exports.index = function(req, res) {
     Form.find()
         .populate('pages')
-        .populate('fields')
         .exec(function(err, forms) {
             if (err) throw new Error(err);
             res.json(forms);
