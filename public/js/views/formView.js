@@ -1,4 +1,4 @@
-window.FormView = Backbone.View.extend({
+window.FormViewList = Backbone.View.extend({
 
     initialize:function () {
         this.render();
@@ -6,15 +6,28 @@ window.FormView = Backbone.View.extend({
 
     render: function () {
         var form = this.model.models;
-        var len = forms.length;
+        var len = form.length;
 
-        $(this.el).html('<div class="row-fluid answer">');
+        $(this.el).html('<div class="row-fluid formList"><h1 class="span12">Select the form:</h1>');
+
 
         for (var i = 0; i < len; i++) {
-            $('.answer', this.el).append("<div class='span6 btn'>
-            TEST FORM </h4></div>");
+            $('.formList', this.el).append(new FormView({model:form[i]}).render().el);
         }
 
         return this;
     }
 });
+
+window.FormView = Backbone.View.extend({
+	tagName: "h4",
+
+	initialize:function () {
+        this.render();
+    },
+
+    render: function () {
+        $(this.el).html(this.template(this.model.toJSON()));
+        return this;
+    }
+})

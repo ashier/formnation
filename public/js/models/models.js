@@ -33,7 +33,7 @@ window.UserModel = Backbone.Model.extend({
 
 window.FormModel = Backbone.Model.extend({
 
-    urlRoot: "/api/forms/",
+    urlRoot: "/api/form/",
 
     idAttribute: "_id",
 
@@ -47,14 +47,14 @@ window.FormModel = Backbone.Model.extend({
         pages: [
             {
                 _id: "51b2fa0af2a1bbd7ec000001",
-                index: "0"
+                index: "0",
                 page_image: "/public/forms/sss_e1_0.png",
                 slug: "publicformssss_e1_0png",
                 id: "51b2fa0af2a1bbd7ec000001"
             },
             {
                 _id: "51b2fa1ef2a1bbd7ec000002",
-                index: "1"
+                index: "1",
                 page_image: "/public/forms/sss_e1_1.png",
                 slug: "publicformssss_e1_1png",
                 id: "51b2fa1ef2a1bbd7ec000002"
@@ -68,13 +68,13 @@ window.FormModel = Backbone.Model.extend({
 
 window.FormCollection = Backbone.Collection.extend({
     model: FormModel,
-    url: "/api/forms/"
+    url: "/api/form/"
 });
 
 
 window.PageModel = Backbone.Model.extend({
 
-    urlRoot: "/api/pages/",
+    urlRoot: "/api/page/",
     idAttribute: "_id",
 
     defaults: 
@@ -90,7 +90,7 @@ window.PageModel = Backbone.Model.extend({
 
 window.FieldModel = Backbone.Model.extend({
 
-    urlRoot: "/api/fields/",
+    urlRoot: "/api/field/",
     idAttribute: "_id",
 
     defaults: 

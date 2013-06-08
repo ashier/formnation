@@ -24,11 +24,12 @@ var AppRouter = Backbone.Router.extend({
         var forms = new FormCollection({assessmentID: 1});
         forms.fetch({success: function(){
             if (!this.formView) {
-                this.formView = new FormView({model: forms});
+                this.formView = new FormViewList({model: forms});
             }
             $('#content').html(this.formView.el);
-            this.headerView.selectMenuItem('login-menu'); 
-        }});       
+        }});
+
+        this.headerView.selectMenuItem('login-menu');        
     }
 });
 
