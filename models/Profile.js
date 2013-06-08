@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
 var schemaOptions = {toJSON: {virtuals: true}};
 
 var ProfileSchema = new Schema({
-    fields: [{type: ObjectId, ref: 'Field'}]
+    name: String,
+    fields: [{type: ObjectId, ref: 'ProfileField'}]
 }, schemaOptions);
 
 module.exports.Profile = mongoose.model('Profile', ProfileSchema);
