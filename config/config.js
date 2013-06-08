@@ -11,6 +11,9 @@
         return {
             initialize: function (app, express) {
 
+                var LINKEDIN_API_KEY = "--insert-linkedin-api-key-here--";
+                var LINKEDIN_SECRET_KEY = "--insert-linkedin-secret-key-here--";
+
                 // all environments
                 app.set('port', process.env.PORT || 3000);
                 app.set('views', __dirname + '/views');
