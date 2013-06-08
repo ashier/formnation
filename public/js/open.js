@@ -30,6 +30,11 @@ var OpenForm = OpenForm || {};
                 model: ProfileModel
             });
 
+            var PageModel = Backbone.Model.extend({
+                urlRoot: "/api/page/:id",
+                idAttribute: "_id"
+            });
+
             var Router = Backbone.Router.extend({
 
                 routes: {
@@ -40,16 +45,27 @@ var OpenForm = OpenForm || {};
                     var self = this;
                     var fields = [];
                     var value_fields = [];
+                    var values = [];
 
                     var formColl = new FormModelCollection();
                     var profileColl = new ProfileModelCollection();
 
                     formColl.fetch({success:function(model) {
                         self.fields = model.toJSON();
-                        profileColl.fetch({success:function(model) {
-                            that.generatePdf(self.fields[0], model.toJSON());
-                        }});
+                        var pages = self.fields[0].pages;
+                        var pagelength = pages.length;
 
+                        for (var i = 0; i < pagelength; i += 1) {
+                            var page = new PageModel();
+                            page.fetch({success: function(model) {
+                                self.fields[0].pages[model.toJSON().page_index].fields = model.toJSON().fields;
+                                if(i == pagelength) {
+                                    profileColl.fetch({success:function(model) {
+                                        that.generatePdf(self.fields[0], model.toJSON()[0].fields);
+                                    }});
+                                }
+                            }});
+                        }
                     }});
                 }
             });
@@ -58,33 +74,34 @@ var OpenForm = OpenForm || {};
             Backbone.history.start();
         },
 
-        generatePdf: function(form,fields) {
+        generatePdf: function(form, fields) {
             var doc = new jsPDF('p', 'pt', 'letter');
+            console.log('doc.API > ', doc);
             doc.setFontSize(9);
-
             var pageCnt = 0;
             //loop through pages
 
-            while(pageCnt < form.pages.length){
+            while(pageCnt < form.pages.length) {
+
                 if(pageCnt > 0) doc.addPage();
 
-                var forms = form.pages[pageCnt].fields;
-
+                var forms = form.pages[pageCnt];
                 doc.addImage(form.pages[pageCnt].page_image, 'JPEG', 0, 0, form.width, form.height);
 
-                console.log(forms);
+                doc.text(100, 100, 'textValue');
+                doc.text(200, 200, 'textValue');
 
-                //loop through entries
-                for(var i=0; i++; i < fields.length ){
-                    var fieldValues = forms;
-                    for(var j=0; j++; j < fieldValues.length){
-                        console.log(fields[i].name + "--" +fieldValues[j].value);
-
-                        if(fields[i].name === fieldValues[j].value){
-                            // doc.text(15, 60, "Octonyan loves jsPDF");
-                            doc.text(fieldValues[j].x, fieldValues[j].y, fields[i].value);
+                //loop through form fields
+                for(var i=0; i < forms.fields.length; i += 1 ) {
+                    var textValue = forms.fields[i].value;
+                    //loop through profile fields
+                    for(var j=0; j < fields.length; j += 1) {
+                        if (fields[j].name === forms.fields[i].value) {
+                            textValue = fields[j].value;
                         }
                     }
+                    console.log(forms.fields[i].x, forms.fields[i].y, textValue);
+                    doc.text(parseInt(forms.fields[i].x, 10), parseInt(forms.fields[i].y, 10), textValue);
                 }
 
                 pageCnt ++;

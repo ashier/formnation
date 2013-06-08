@@ -3,22 +3,11 @@ var Form = require('../models/Form').Form;
 var Page = require('../models/Page').Page;
 
 exports.index = function(req, res) {
+    var forms = [];
     Form.find({})
         .populate('pages')
         .exec(function(err, forms) {
             if (err) throw new Error(err);
-            console.log(forms.pages);
-            if (forms.pages) {
-                var pagelength = forms.pages.length;
-                for (var i = 0 ; i < pagelength; i += 1) {
-                    Page.findOne({_id:forms.pages[i]._id})
-                        .populate('fields')
-                        .exec(function(err, page) {
-                            // console
-                        });
-                }
-            }
-            
             res.json(forms);
         });
 };
