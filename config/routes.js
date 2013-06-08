@@ -16,6 +16,7 @@
                 this.app = app;
 
                 app.get('/', IndexController.index);
+                app.get('/forms', IndexController.forms);
 
                 // user
                 app.get('/api/user', UserController.index);
