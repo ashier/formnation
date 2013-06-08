@@ -5,6 +5,7 @@
     var FormController = require('../controllers/FormController');
     var FieldController = require('../controllers/FieldController');
     var PageController = require('../controllers/PageController');
+    var ProfileController = require('../controllers/ProfileController');
 
     module.exports = function() {
 
@@ -45,6 +46,20 @@
                 app.get('/api/page/:id', PageController.show);
                 app.put('/api/page/:id', PageController.update);
                 app.delete('/api/page/:id', PageController.destroy);
+
+
+                // profile
+                app.get('/api/profile', ProfileController.index);
+                app.post('/api/profile', ProfileController.create);
+                app.get('/api/profile/:id', ProfileController.show);
+                app.put('/api/profile/:id', ProfileController.update);
+                app.delete('/api/profile/:id', ProfileController.destroy);
+
+
+                // profile fields
+                app.post('/api/profile/:id/field', ProfileController.createField);
+                app.get('/api/profile/:id/field/:field_id', ProfileController.showField);
+                app.put('/api/profile/:id/field/:field_id', ProfileController.updateField);
 
             }
         };
