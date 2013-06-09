@@ -77,7 +77,7 @@ var OpenForm = OpenForm || {};
         generatePdf: function(form, fields) {
             var doc = new jsPDF('p', 'pt', 'letter');
             console.log('doc.API > ', doc);
-            doc.setFontSize(9);
+            doc.setFontSize(10);
             var pageCnt = 0;
             //loop through pages
 
@@ -87,21 +87,36 @@ var OpenForm = OpenForm || {};
 
                 var forms = form.pages[pageCnt];
                 doc.addImage(form.pages[pageCnt].page_image, 'JPEG', 0, 0, form.width, form.height);
+                // doc.addImage(form.pages[pageCnt].page_image, 'JPEG', 0, 0, 215, 279);
 
-                doc.text(100, 100, 'textValue');
-                doc.text(200, 200, 'textValue');
+                // doc.text(0, 10, '---');
+                // doc.text(0, 20, '---');
+                // doc.text(0, 30, '---');
+                // doc.text(0, 40, '---');
+                // doc.text(0, 50, '---');
+                // doc.text(0, 60, '---');
+                // doc.text(0, 70, '---');
+                // doc.text(0, 80, '---');
+                // doc.text(0, 90, '---');
+                // doc.text(0, 100, '---');
 
                 //loop through form fields
                 for(var i=0; i < forms.fields.length; i += 1 ) {
                     var textValue = forms.fields[i].value;
+                    // var textValue = '';
                     //loop through profile fields
                     for(var j=0; j < fields.length; j += 1) {
                         if (fields[j].name === forms.fields[i].value) {
                             textValue = fields[j].value;
                         }
                     }
-                    console.log(forms.fields[i].x, forms.fields[i].y, textValue);
-                    doc.text(parseInt(forms.fields[i].x, 10), parseInt(forms.fields[i].y, 10), textValue);
+
+                    console.log(forms.fields[i].cell_type);
+                    if (forms.fields[i].cell_type !== 'text') {
+                        textValue = 'X';
+                    }
+                    // console.log(forms.fields[i].x, forms.fields[i].y, textValue);
+                    doc.text(parseInt(forms.fields[i].x, 10) * .56, parseInt(forms.fields[i].y, 10) * .57, textValue);
                 }
 
                 pageCnt ++;
