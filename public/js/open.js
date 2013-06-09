@@ -102,8 +102,8 @@ var OpenForm = OpenForm || {};
 
                 //loop through form fields
                 for(var i=0; i < forms.fields.length; i += 1 ) {
-                    var textValue = forms.fields[i].value;
-                    // var textValue = '';
+                    // var textValue = forms.fields[i].value;
+                    var textValue = '';
                     //loop through profile fields
                     for(var j=0; j < fields.length; j += 1) {
                         if (fields[j].name === forms.fields[i].value) {
@@ -115,7 +115,7 @@ var OpenForm = OpenForm || {};
                     if (forms.fields[i].cell_type !== 'text') {
                         textValue = 'X';
                     }
-                    // console.log(forms.fields[i].x, forms.fields[i].y, textValue);
+                    console.log(forms.fields[i].x, forms.fields[i].y, textValue);
                     doc.text(parseInt(forms.fields[i].x, 10) * .56, parseInt(forms.fields[i].y, 10) * .57, textValue);
                 }
 
