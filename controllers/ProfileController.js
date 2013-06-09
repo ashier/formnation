@@ -3,6 +3,7 @@ var Profile = require('../models/Profile').Profile;
 var ProfileField = require('../models/ProfileField').ProfileField;
 
 exports.index = function(req, res) {
+    console.log('req.params.id > ', req.params);
     Profile.find()
         .populate('fields')
         .exec(function(err, profiles) {
@@ -27,7 +28,7 @@ exports.create = function(req, res) {
 
 exports.show = function(req, res) {
     var body = req.body;
-    Profile.findOne({id:body.id})
+    Profile.findOne({id:req.params.id || body.id})
         .populate('fields')
         .exec(function(err, profile) {
             res.json(profile);
